@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             PlayerHealth ph = collision.gameObject.GetComponent<PlayerHealth>();
-            if(ph != null)
+            if (ph != null)
             {
                 ph.TakeDamage(15);
+                gameObject.SetActive(false);
             }
         }
         gameObject.SetActive(false);
