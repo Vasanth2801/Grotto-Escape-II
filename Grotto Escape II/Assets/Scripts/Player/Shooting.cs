@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform firePoint;
     [SerializeField] private ObjectPooler pooler;
+    [SerializeField] private Animator animator;
 
     void Update()
     {
@@ -19,6 +20,7 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
+        animator.SetTrigger("Shoot");
         GameObject bullet = pooler.SpawnFromPools("Bullet",firePoint.position,firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
